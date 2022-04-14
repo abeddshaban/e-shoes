@@ -1,0 +1,7 @@
+.PageNotFound_section{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    padding-top: 150px;
+}

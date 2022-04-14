@@ -79,16 +79,12 @@ export default function Header() {
             </DrawerHeader>
             <Divider />
             <List>
-              {/* <Link
-                to="/classes"
-                className="header_link"
-                onClick={handleDrawerClose}
-              > */}
-              {/* <Link to="/"> */}
-              <ListItem button key="home">
-                <ListItemText primary="Home" />
-              </ListItem>
-              {/* </Link> */}
+              {/* Home */}
+              <Link to="/" onClick={handleDrawerClose} className="header_link">
+                <ListItem button key="home">
+                  <ListItemText primary="Home" />
+                </ListItem>
+              </Link>
             </List>
             <Divider />
           </Drawer>
