@@ -8,13 +8,6 @@ function App() {
   return (
     <>
       <Header />
-      {/* <Routes>
-        <Route
-          path="*"
-          // element={<PageNotFound />}
-        />
-        <Route path="" element={<App />} />
-      </Routes> */}
 
       <Routes>
         <Route path="/" element={<Home />} />
