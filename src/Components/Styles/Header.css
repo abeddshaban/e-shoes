@@ -1,0 +1,45 @@
+.header {
+    height: 60px;
+    width: 100%;
+    background-color: aqua;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header_div_logo {
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.header_div_logo_img {
+    width: 60px;
+    height: 60px;
+    image-rendering: crisp-edges;
+}
+
+/* right side */
+
+.header_div_right_side {
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.MenuRoundedIcon {
+    color: rgb(17, 17, 17);
+    cursor: pointer;
+    border-radius: 25px;
+    padding: 8px;
+}
+
+.MenuRoundedIcon:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* styles */
+
+/* .header_link{
+
+} */
