@@ -1,0 +1,55 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+
+.link{
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+}
+
+.product_item {
+  max-width: 250px;
+  max-height: 340px;
+  text-align: center;
+  margin: 10px;
+  transition-duration: 0.7s;
+  transition-timing-function: ease-out;
+}
+
+.product_item_img {
+  width: 100%;
+  max-width: 250px;
+  max-height: 250px;
+}
+
+.product_item_info {
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 5px;
+}
+
+.product_item_name {
+  font-family: "Roboto", sans-serif;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.product_item_price {
+  font-family: "Roboto", sans-serif;
+  font-size: medium;
+  font-weight: 500;
+}
+
+@media (max-width: 783px) {
+  .product_item {
+    max-width: 175px;
+    max-height: 270px;
+  }
+
+  .product_item_name {
+    font-size: 16px;
+  }
+
+  .product_item_price {
+    font-size: 14px;
+  }
+}

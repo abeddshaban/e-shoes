@@ -39,10 +39,10 @@ export default function Header() {
   return (
     <header className="header">
       <div className="header_div_logo">
-        {/* <a href="website.com"> */}
-        {/* <img className="header_div_logo_img" src="" alt="logo" /> */}
-        <span>logo</span>
-        {/* </a> */}
+        <Link to="/" className="header_link">
+          {/* <img className="header_div_logo_img" src="" alt="logo" /> */}
+          <span>logo</span>
+        </Link>
       </div>
 
       <div className="header_div_right_side">

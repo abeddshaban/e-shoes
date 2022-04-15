@@ -1,12 +1,17 @@
 .header {
   height: 60px;
   width: 100%;
-  background-color: aqua;
+  /* background-color: aqua; */
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
+}
+
+.header_link{
+  color: rgb(0, 0, 0);
+  text-decoration: none;
 }
 
 .header_div_logo {
