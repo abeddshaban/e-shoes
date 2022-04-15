@@ -5,6 +5,7 @@ import Home from "./Pages/Home";
 import PageNotFound from "./Pages/PageNotFound";
 import ShoesID from "./Components/[ShoesID]";
 import Shoes from "./Pages/Shoes";
+import { Footer } from "./Components/Footer";
 
 function App() {
   return (
@@ -19,6 +20,8 @@ function App() {
 
         <Route path="/*" element={<PageNotFound />} />
       </Routes>
+
+      <Footer />
     </>
   );
 }
