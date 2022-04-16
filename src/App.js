@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Header from "./Components/Header";
 import Home from "./Pages/Home";
 import PageNotFound from "./Pages/PageNotFound";
-import ShoesID from "./Components/[ShoesID]";
+import ShoesID from "./Components/ShoesID/[ShoesID]";
 import Shoes from "./Pages/Shoes";
 import { Footer } from "./Components/Footer";
 
