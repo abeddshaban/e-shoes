@@ -32,30 +32,29 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 export default function Header() {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-  const handleDrawerClose = () => {
-    setOpen(false);
+
+  const handleDrawer = () => {
+    setOpen(!open);
   };
 
   const [UserState, setUserState] = useState(Boolean);
 
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      // User is signed in, see docs for a list of available properties
-      // https://firebase.google.com/docs/reference/js/firebase.User
+  function updateUserState() {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/firebase.User
 
-      // console.log(user);
-      setUserState(true);
-    } else {
-      // User is signed out
-      setUserState(false);
-    }
-  });
+        setUserState(true);
+      } else {
+        // User is signed out
+        setUserState(false);
+      }
+    });
+  }
 
   return (
-    <header className="header">
+    <header className="header" onLoad={updateUserState}>
       <div className="header_div_logo">
         <Link to="/" className="header_link">
           {/* <img className="header_div_logo_img" src="" alt="logo" /> */}
@@ -65,22 +64,24 @@ export default function Header() {
 
       <div className="header_div_right_side">
         {UserState ? (
-          <button onClick={logOut}>logout</button>
+          <button onClick={logOut} className="header_div_right_side_btn">
+            logout
+          </button>
         ) : (
           <button
             onClick={signInWithGoogle}
             className="header_div_right_side_btn"
           >
             Sign-in
-            <img src={Googleimg} alt="google image" className="google_img" />
+            <img src={Googleimg} alt="google" className="google_img" />
           </button>
         )}
 
-        <Box>
+        <Box onLoad={updateUserState}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
-            onClick={handleDrawerOpen}
+            onClick={handleDrawer}
           >
             <MenuIcon />
           </IconButton>
@@ -97,7 +98,7 @@ export default function Header() {
             anchor="right"
           >
             <DrawerHeader>
-              <IconButton onClick={handleDrawerClose}>
+              <IconButton onClick={handleDrawer}>
                 {theme.direction === "rtl" ? (
                   <ChevronLeftIcon />
                 ) : (
@@ -107,13 +108,25 @@ export default function Header() {
             </DrawerHeader>
             <Divider />
             <List>
-              {/* Home */}
-              <Link to="/" onClick={handleDrawerClose} className="header_link">
+              <Link to="/" onClick={handleDrawer} className="header_link">
                 <ListItem button key="home">
                   <ListItemText primary="Home" />
                 </ListItem>
               </Link>
             </List>
+            {UserState ? (
+              <List>
+                <ListItem button key="logout">
+                  <ListItemText onClick={logOut} primary="logout" />
+                </ListItem>
+              </List>
+            ) : (
+              <List onClick={signInWithGoogle}>
+                <ListItem button key="sign-in">
+                  <ListItemText primary="sign-in" />
+                </ListItem>
+              </List>
+            )}
             <Divider />
           </Drawer>
         </Box>

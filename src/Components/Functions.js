@@ -21,7 +21,7 @@ export const signInWithGoogle = () => {
       const user = result.user;
       //   console.log(user);
 
-      // ...
+      console.log("sign in successfully");
     })
     .catch((error) => {
       // Handle Errors here.
