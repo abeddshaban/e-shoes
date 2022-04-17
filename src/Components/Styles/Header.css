@@ -9,7 +9,7 @@
   justify-content: space-between;
 }
 
-.header_link{
+.header_link {
   color: rgb(0, 0, 0);
   text-decoration: none;
 }
@@ -30,6 +30,10 @@
 .header_div_right_side {
   padding-left: 16px;
   padding-right: 16px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
 }
 
 .MenuRoundedIcon {

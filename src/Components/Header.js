@@ -14,6 +14,9 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
+import { logOut, signInWithGoogle } from "./Functions";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../Firebase/firebase";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -27,14 +30,27 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 export default function Header() {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
-
   const handleDrawerOpen = () => {
     setOpen(true);
   };
-
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  const [UserState, setUserState] = useState(Boolean);
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/firebase.User
+
+      // console.log(user);
+      setUserState(true);
+    } else {
+      // User is signed out
+      setUserState(false);
+    }
+  });
 
   return (
     <header className="header">
@@ -46,7 +62,11 @@ export default function Header() {
       </div>
 
       <div className="header_div_right_side">
-        {/* <MenuRoundedIcon className="MenuRoundedIcon" /> */}
+        {UserState ? (
+          <button onClick={logOut}>logout</button>
+        ) : (
+          <button onClick={signInWithGoogle}>login with google</button>
+        )}
 
         <Box>
           <IconButton
