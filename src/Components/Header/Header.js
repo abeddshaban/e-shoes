@@ -1,7 +1,7 @@
-import "./Styles/Header.css";
+import "./Header.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-
+import Googleimg from "../Images/google.png";
 // mui
 import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -14,9 +14,11 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
-import { logOut, signInWithGoogle } from "./Functions";
+
+// firebase
+import { logOut, signInWithGoogle } from "../Functions";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../Firebase/firebase";
+import { auth } from "../../Firebase/firebase";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -65,7 +67,13 @@ export default function Header() {
         {UserState ? (
           <button onClick={logOut}>logout</button>
         ) : (
-          <button onClick={signInWithGoogle}>login with google</button>
+          <button
+            onClick={signInWithGoogle}
+            className="header_div_right_side_btn"
+          >
+            Sign-in
+            <img src={Googleimg} alt="google image" className="google_img" />
+          </button>
         )}
 
         <Box>

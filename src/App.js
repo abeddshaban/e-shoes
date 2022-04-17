@@ -1,6 +1,6 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import Header from "./Components/Header";
+import Header from "./Components/Header/Header";
 import Home from "./Pages/Home";
 import PageNotFound from "./Pages/PageNotFound";
 import ShoesID from "./Components/ShoesID/[ShoesID]";

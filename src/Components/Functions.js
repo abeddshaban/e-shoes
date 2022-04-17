@@ -3,7 +3,9 @@ import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 import { auth } from "../Firebase/firebase.js";
 
 export const signInWithGoogle = () => {
-  const provider = new GoogleAuthProvider();
+  const provider = new GoogleAuthProvider().addScope(
+    "https://www.googleapis.com/auth/contacts.readonly"
+  );
   auth.useDeviceLanguage();
 
   signInWithPopup(auth, provider)
