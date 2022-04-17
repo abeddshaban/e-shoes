@@ -131,7 +131,16 @@ export default function Header() {
             ) : (
               <List onClick={signInToApp}>
                 <ListItem button key="sign-in">
-                  <ListItemText primary="sign-in" />
+                  <ListItemText>
+                    <span className="list_item">
+                      sign-in
+                      <img
+                        src={Googleimg}
+                        alt="google"
+                        className="google_img"
+                      />
+                    </span>
+                  </ListItemText>
                 </ListItem>
               </List>
             )}

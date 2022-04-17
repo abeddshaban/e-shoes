@@ -1,18 +1,20 @@
 import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
 
-import { auth } from "../Firebase/firebase.js";
+import { auth, db } from "../Firebase/firebase.js";
 
 export const signInWithGoogle = () => {
   const provider = new GoogleAuthProvider().addScope(
     "https://www.googleapis.com/auth/contacts.readonly"
   );
+
   auth.useDeviceLanguage();
 
   signInWithPopup(auth, provider)
     .then((result) => {
       // This gives you a Google Access Token. You can use it to access the Google API.
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
+      // const credential = GoogleAuthProvider.credentialFromResult(result);
+      // const token = credential.accessToken;
 
       //   console.log(credential);
       //   console.log(token);
@@ -22,6 +24,8 @@ export const signInWithGoogle = () => {
       //   console.log(user);
 
       console.log("sign in successfully");
+
+      setDoc(doc(db, "users", user.email), { name: user.displayName });
     })
     .catch((error) => {
       // Handle Errors here.
@@ -32,10 +36,11 @@ export const signInWithGoogle = () => {
       console.error(errorMessage);
 
       // The email of the user's account used.
-      const email = error.email;
+      // const email = error.email;
 
       // The AuthCredential type that was used.
-      const credential = GoogleAuthProvider.credentialFromError(error);
+      // const credential = GoogleAuthProvider.credentialFromError(error);
+
       // ...
     });
 };

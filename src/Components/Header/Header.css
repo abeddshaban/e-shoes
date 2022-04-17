@@ -54,6 +54,7 @@
   padding-top: 3px;
   padding-bottom: 3px;
   cursor: pointer;
+  margin-right: 8px;
   transition-duration: 0.3s;
 }
 .header_div_right_side_btn:hover {
@@ -64,6 +65,12 @@
   width: 30px;
   height: 30px;
   padding-left: 4px;
+}
+
+.list_item {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
 }
 
 @media (max-width: 600px) {
