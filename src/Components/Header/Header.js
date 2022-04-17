@@ -53,6 +53,18 @@ export default function Header() {
     });
   }
 
+  function logOutOfApp() {
+    logOut();
+    updateUserState();
+    handleDrawer();
+  }
+
+  function signInToApp() {
+    signInWithGoogle();
+    updateUserState();
+    handleDrawer();
+  }
+
   return (
     <header className="header" onLoad={updateUserState}>
       <div className="header_div_logo">
@@ -63,11 +75,7 @@ export default function Header() {
       </div>
 
       <div className="header_div_right_side">
-        {UserState ? (
-          <button onClick={logOut} className="header_div_right_side_btn">
-            logout
-          </button>
-        ) : (
+        {!UserState ? (
           <button
             onClick={signInWithGoogle}
             className="header_div_right_side_btn"
@@ -75,7 +83,7 @@ export default function Header() {
             Sign-in
             <img src={Googleimg} alt="google" className="google_img" />
           </button>
-        )}
+        ) : null}
 
         <Box onLoad={updateUserState}>
           <IconButton
@@ -115,13 +123,13 @@ export default function Header() {
               </Link>
             </List>
             {UserState ? (
-              <List>
+              <List onClick={logOutOfApp}>
                 <ListItem button key="logout">
-                  <ListItemText onClick={logOut} primary="logout" />
+                  <ListItemText primary="logout" />
                 </ListItem>
               </List>
             ) : (
-              <List onClick={signInWithGoogle}>
+              <List onClick={signInToApp}>
                 <ListItem button key="sign-in">
                   <ListItemText primary="sign-in" />
                 </ListItem>
