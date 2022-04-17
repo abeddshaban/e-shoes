@@ -46,6 +46,7 @@ export default function Header() {
         // https://firebase.google.com/docs/reference/js/firebase.User
 
         setUserState(true);
+        console.log(user);
       } else {
         // User is signed out
         setUserState(false);

@@ -25,7 +25,13 @@ export const signInWithGoogle = () => {
 
       console.log("sign in successfully");
 
-      setDoc(doc(db, "users", user.email), { name: user.displayName });
+      setDoc(doc(db, "users", user.email), {
+        name: user.displayName,
+        email: user.email,
+        phoneNumber: user.phoneNumber || "",
+        photoURL: user.photoURL || "",
+        uid: user.uid,
+      });
     })
     .catch((error) => {
       // Handle Errors here.
