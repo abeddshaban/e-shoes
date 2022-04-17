@@ -1,6 +1,11 @@
+import "./ShoesID.css";
+
 import { useLocation } from "react-router-dom";
+import { Fragment, useState } from "react";
 
 const ShoesID = () => {
+  const [loading, setLoading] = useState(true);
+
   const location = useLocation();
 
   let value = location.state.data;
@@ -9,23 +14,60 @@ const ShoesID = () => {
 
   // console.log(location.state.data.imgurl.imgurl);
 
-  [value.sizes.sizes].map((x) => {
-    console.log(x);
-  });
+  // [value.sizes.sizes].map((x) => {
+  //   console.log(x);
+  // });
+
+  // console.log(value.sizes.sizes);
 
   return (
-    <div className="postId__page">
-      <img src={value.imgurl.imgurl} alt="" />
-      <p>{value.name.name}</p>
-      <p>{value.color.color}</p>
-      <p>{value.details.details}</p>
+    <div className="shoesID__page">
+      {/* <div style={{ display: loading ? "block" : "none" }}>loading ...</div>
+      <div style={{ display: loading ? "none" : "block" }}>
+        <img
+          src={value?.imgurl.imgurl}
+          alt={value?.imgurl.imgurl}
+          onLoad={() => setLoading(false)}
+        />
+      </div> */}
 
-      <div>
-        sizes:
-        {[value.sizes.sizes].map((x) => {
-          return <div key={x}>-{x}-</div>;
-        })}
-      </div>
+      <img
+        className="shoesID_img"
+        src={value?.imgurl.imgurl}
+        alt={value?.imgurl.imgurl}
+        onLoad={() => setLoading(false)}
+      />
+
+      <section className="shoesID__section">
+        <span className="shoesID__section_name">{value?.name.name}</span>
+
+        <span className="shoesID__section_border" />
+
+        <span className="shoesID__section_price">{value?.price.price}$</span>
+
+        <ul>
+          <li>
+            <span>color: {value?.color.color}</span>
+          </li>
+
+          <li>
+            <span>{value?.details.details}</span>
+          </li>
+        </ul>
+
+        <span className="shoesID__section_sizes">
+          sizes:
+          <span className="shoesID__section_sizes_span">
+            {value.sizes.sizes.map((size, index) => {
+              return (
+                <Fragment key={index}>
+                  <span className="shoesID__section_sizes_box">{size}</span>
+                </Fragment>
+              );
+            })}
+          </span>
+        </span>
+      </section>
     </div>
   );
 };

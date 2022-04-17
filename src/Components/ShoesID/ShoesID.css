@@ -1,0 +1,81 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+
+.shoesID__page {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-family: "Roboto", sans-serif;
+  transition-duration: 1s;
+  transition-timing-function: ease-in-out;
+}
+
+.shoesID_img {
+  min-width: 280px;
+  max-width: 500px;
+  max-height: 500px;
+  width: 50%;
+  margin-left: 20px;
+}
+
+.shoesID__section {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  padding: 30px;
+}
+
+.shoesID__section_name {
+  font-family: "Roboto", sans-serif;
+  font-size: 29px;
+  font-weight: 500;
+  line-height: 40px;
+}
+
+.shoesID__section_border {
+  border-top: 0.5px solid grey;
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.shoesID__section_price {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-size: 28px;
+  color: rgb(0, 0, 0);
+}
+
+.shoesID__section_sizes {
+  display: flex;
+  flex-direction: column;
+}
+
+.shoesID__section_sizes_span {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 8px;
+}
+
+.shoesID__section_sizes_box {
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  padding: 6px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 8px;
+  transition-duration: 0.3s;
+}
+.shoesID__section_sizes_box:hover {
+  border: 1px solid rgba(0, 0, 0, 1);
+}
+
+@media (max-width: 500px) {
+  .shoesID__page {
+    flex-direction: column;
+    align-items: center;
+  }
+}
