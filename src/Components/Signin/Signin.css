@@ -1,0 +1,35 @@
+.signin_page {
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: space-around;
+  height: 60vh;
+}
+
+.signin_btn {
+  background-color: white;
+  border: 1px solid grey;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  cursor: pointer;
+  margin-right: 8px;
+  transition-duration: 0.3s;
+}
+.signin_btn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.signin_google_img {
+  width: 30px;
+  height: 30px;
+  padding-left: 4px;
+}
