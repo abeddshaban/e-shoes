@@ -63,6 +63,7 @@
 
 .shoesID__section_sizes_box {
   border: 1px solid rgba(0, 0, 0, 0.5);
+  background-color: rgb(255, 255, 255);
   padding: 6px;
   border-radius: 8px;
   cursor: pointer;
@@ -71,6 +72,7 @@
 }
 .shoesID__section_sizes_box:hover {
   border: 1px solid rgba(0, 0, 0, 1);
+  background-color: rgb(0, 0, 0,0.2);
 }
 
 @media (max-width: 500px) {

@@ -1,9 +1,10 @@
 import "./Header.css";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Googleimg from "../Images/google.png";
 // mui
 import { styled, useTheme } from "@mui/material/styles";
+import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
@@ -31,6 +32,8 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 
 export default function Header() {
   const theme = useTheme();
+  const navigate = useNavigate();
+
   const [open, setOpen] = useState(false);
 
   const handleDrawer = () => {
@@ -46,7 +49,6 @@ export default function Header() {
         // https://firebase.google.com/docs/reference/js/firebase.User
 
         setUserState(true);
-        console.log(user);
       } else {
         // User is signed out
         setUserState(false);
@@ -85,6 +87,15 @@ export default function Header() {
             <img src={Googleimg} alt="google" className="google_img" />
           </button>
         ) : null}
+        <IconButton
+          color="inherit"
+          aria-label="open drawer"
+          onClick={() => {
+            navigate("cart");
+          }}
+        >
+          <ShoppingBagOutlinedIcon />
+        </IconButton>
 
         <Box onLoad={updateUserState}>
           <IconButton

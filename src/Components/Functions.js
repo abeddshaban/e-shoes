@@ -31,6 +31,11 @@ export const signInWithGoogle = () => {
         phoneNumber: user.phoneNumber || "",
         photoURL: user.photoURL || "",
         uid: user.uid,
+        providerId: user.providerId,
+        permission: {
+          admin: false,
+          analyser: false,
+        },
       });
     })
     .catch((error) => {
