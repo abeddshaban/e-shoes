@@ -22,15 +22,6 @@ const ShoesID = () => {
 
   return (
     <div className="shoesID__page">
-      {/* <div style={{ display: loading ? "block" : "none" }}>loading ...</div>
-      <div style={{ display: loading ? "none" : "block" }}>
-        <img
-          src={value?.imgurl.imgurl}
-          alt={value?.imgurl.imgurl}
-          onLoad={() => setLoading(false)}
-        />
-      </div> */}
-
       <img
         className="shoesID_img"
         src={value?.imgurl.imgurl}

@@ -36,6 +36,8 @@ export const signInWithGoogle = () => {
           admin: false,
           analyser: false,
         },
+        bag: {},
+        ordersDelivered: {},
       });
     })
     .catch((error) => {
