@@ -1,24 +1,55 @@
 import "./ShoesID.css";
 
-import { useLocation } from "react-router-dom";
-import { Fragment, useState } from "react";
+import { Navigate, useLocation } from "react-router-dom";
+import { Fragment, useEffect, useState } from "react";
+import { doc, getDoc, setDoc } from "firebase/firestore";
+import { auth, db } from "../../Firebase/firebase";
 
 const ShoesID = () => {
-  const [loading, setLoading] = useState(true);
-
   const location = useLocation();
-
   let value = location.state.data;
 
-  // console.log(location.state.data, " useLocation Hook");
+  const [available, setAvailable] = useState(false);
 
-  // console.log(location.state.data.imgurl.imgurl);
+  const [user, setUser] = useState([]);
 
-  // [value.sizes.sizes].map((x) => {
-  //   console.log(x);
-  // });
+  const userRef = doc(
+    db,
+    "users",
+    auth.currentUser ? auth.currentUser.email : "guest"
+  );
 
-  // console.log(value.sizes.sizes);
+  const userSnap = getDoc(userRef);
+
+  // useEffect(() => {
+  //   if (auth.currentUser.email) {
+  //     console.log("what is available", available);
+  //     userSnap.then((res) => {
+  //       setUser(res.data());
+  //     });
+  //   }
+  // }, [user]);
+
+  const AddToCart = async () => {
+    if (auth.currentUser) {
+      await setDoc(
+        userRef,
+        {
+          bag: {
+            ...user.bag,
+            name: value?.name.name,
+            price: value?.price.price,
+            color: value?.color.color,
+            details: value?.details.details,
+          },
+        },
+        { merge: true }
+      );
+      console.log(user?.bag);
+    } else {
+      <Navigate to="/signin" replace />;
+    }
+  };
 
   return (
     <div className="shoesID__page">
@@ -26,7 +57,6 @@ const ShoesID = () => {
         className="shoesID_img"
         src={value?.imgurl.imgurl}
         alt={value?.imgurl.imgurl}
-        onLoad={() => setLoading(false)}
       />
 
       <section className="shoesID__section">
@@ -58,6 +88,9 @@ const ShoesID = () => {
             })}
           </span>
         </span>
+        <button onClick={AddToCart} className="shoesID__section_addtocart_btn">
+          ADD TO CART
+        </button>
       </section>
     </div>
   );
