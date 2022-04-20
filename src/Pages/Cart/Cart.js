@@ -1,6 +1,6 @@
 import "./Cart.css";
 import { useEffect, useState } from "react";
-import { doc, getDoc, onSnapshot } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import { auth, db } from "../../Firebase/firebase";
 
 function Cart() {
@@ -14,13 +14,16 @@ function Cart() {
     userSnap.then((res) => {
       setUser(res.data());
       if (!user == "") {
-        setAvailable(true);
+        if (available == false) {
+          setAvailable(true);
+        }
       } else {
-        setAvailable(false);
+        if (available == true) {
+          setAvailable(false);
+        }
       }
-      console.log(available);
     });
-  }, []);
+  }, [userSnap, user, available]);
 
   // console.log("user", user.bag.itemID);
 
