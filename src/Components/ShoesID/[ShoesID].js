@@ -58,7 +58,7 @@ const ShoesID = () => {
           },
           { merge: true }
         ).catch((error) => {
-          notifyError(error.message);
+          notifyError("An error have occured");
           console.log(error);
         });
 
@@ -143,6 +143,9 @@ const ShoesID = () => {
         <button onClick={AddToCart} className="shoesID__section_addtocart_btn">
           ADD TO CART
         </button>
+
+        {/* check if the user bag has the id of the shoes else return add to cart btn */}
+        {/* {user ? user.bag : null} */}
       </section>
     </div>
   );
