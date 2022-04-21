@@ -62,8 +62,9 @@
 }
 
 .shoesID__section_sizes_box {
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(221, 221, 221);
+  color: rgb(221, 221, 221);
+  background: rgb(247, 247, 247);
   padding: 6px;
   border-radius: 8px;
   cursor: pointer;
@@ -72,11 +73,16 @@
 }
 .shoesID__section_sizes_box:hover {
   border: 1px solid rgba(0, 0, 0, 1);
-  background-color: rgb(0, 0, 0,0.2);
+  background-color: rgba(0, 0, 0, 0);
+  color: rgb(0, 0, 0);
+}
+.shoesID__section_sizes_box:focus {
+  border: 1px solid rgba(0, 0, 0, 1);
+  background-color: rgba(0, 0, 0, 0);
+  color: rgb(0, 0, 0);
 }
 
-
-.shoesID__section_addtocart_btn{
+.shoesID__section_addtocart_btn {
   width: 100%;
   padding: 8px;
   margin-top: 10px;
@@ -89,11 +95,10 @@
   cursor: pointer;
   transition-duration: 0.3s;
 }
-.shoesID__section_addtocart_btn:hover{
+.shoesID__section_addtocart_btn:hover {
   color: rgb(0, 0, 0);
   background-color: whitesmoke;
 }
-
 
 @media (max-width: 500px) {
   .shoesID__page {

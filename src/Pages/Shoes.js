@@ -18,12 +18,18 @@ const Shoes = () => {
         }))
       );
     });
-  }, []);
+  }, [shoes]);
 
   return (
     <div>
-      {shoes.map(({ id, data: { name, img, price } }) => (
-        <ProductItem key={id} name={name} imgurl={img} price={price} />
+      {shoes.map(({ id, data: { name, img, price, itemID } }) => (
+        <ProductItem
+          key={id}
+          name={name}
+          imgurl={img}
+          price={price}
+          itemID={itemID}
+        />
       ))}
     </div>
   );
