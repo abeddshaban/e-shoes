@@ -20,7 +20,7 @@ const ShoesID = () => {
   let value = location.state.data;
 
   const [sizeChosen, setSizeChosen] = useState("");
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState(null);
 
   const userRef = doc(
     db,
@@ -36,7 +36,7 @@ const ShoesID = () => {
     });
   }, [user]);
 
-  const AddToCart = async (event) => {
+  const AddToCart = async () => {
     if (user) {
       // User is signed in
       if (sizeChosen !== "") {
@@ -51,16 +51,18 @@ const ShoesID = () => {
                 price: value?.price.price + "$",
                 color: value?.color.color,
                 details: value?.details.details,
+                shoesID: value.shoesID.shoesID,
                 size: sizeChosen,
               },
             },
           },
           { merge: true }
         ).catch((error) => {
+          notifyError(error.message);
           console.log(error);
         });
+
         notifySuccess("👟 " + [value?.name.name] + " added to cart!");
-        console.log(user.bag);
       } else {
         notifyWarn("You did not select a size for your shoes");
       }
@@ -70,8 +72,25 @@ const ShoesID = () => {
     }
   };
 
+  // if (user) {
+  //   let x = user.bag;
+
+  //   console.log([x].map((cartItem) => console.log("item=", cartItem)));
+  // }
+
   return (
     <div className="shoesID__page">
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable={false}
+        pauseOnHover={false}
+      />
       <img
         className="shoesID_img"
         src={value?.imgurl.imgurl}
@@ -89,7 +108,6 @@ const ShoesID = () => {
           <li>
             <span>color: {value?.color.color}</span>
           </li>
-
           <li>
             <span>{value?.details.details}</span>
           </li>
@@ -125,18 +143,6 @@ const ShoesID = () => {
         <button onClick={AddToCart} className="shoesID__section_addtocart_btn">
           ADD TO CART
         </button>
-
-        <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick={false}
-          rtl={false}
-          pauseOnFocusLoss={false}
-          draggable={false}
-          pauseOnHover={false}
-        />
       </section>
     </div>
   );

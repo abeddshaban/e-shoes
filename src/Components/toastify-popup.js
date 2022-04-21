@@ -36,3 +36,27 @@ export function notifyWarn(text) {
     progress: undefined,
   });
 }
+
+export function notifyInfo(text) {
+  toast.info(text, {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: false,
+    pauseOnHover: false,
+    draggable: false,
+    progress: undefined,
+  });
+}
+
+export function notifyDefault(text) {
+  toast(text, {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: false,
+    pauseOnHover: false,
+    draggable: false,
+    progress: undefined,
+  });
+}
