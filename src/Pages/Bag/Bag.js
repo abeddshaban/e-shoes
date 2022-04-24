@@ -2,6 +2,7 @@ import "./Bag.css";
 import { useEffect, useState } from "react";
 import { collection, doc, getDoc, onSnapshot } from "firebase/firestore";
 import { auth, db } from "../../Firebase/firebase";
+import Item from "./Item";
 
 function Bag() {
   const [user, setUser] = useState([]);
@@ -49,16 +50,26 @@ function Bag() {
   return (
     <div className="bag_page">
       <section className="bag_page_S_bag_items">
-        <span>
-          {!available
-            ? null
-            : bag.map(({ id, data: { name, imgurl } }) => (
-                <span key={id}>
-                  <img src={imgurl} alt={name} style={{ width: "240px" }} />
-                  <p>{name}</p>
-                </span>
-              ))}
-        </span>
+        {!available
+          ? null
+          : bag.map(
+              ({
+                id,
+                data: { name, imgurl, details, color, price, size, shoesID },
+              }) => (
+                <Item
+                  key={id}
+                  id={id}
+                  name={name}
+                  imgurl={imgurl}
+                  details={details}
+                  color={color}
+                  price={price}
+                  size={size}
+                  shoesID={shoesID}
+                />
+              )
+            )}
       </section>
       <section className="bag_page_S_bag_items_info">info</section>
     </div>
