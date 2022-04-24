@@ -35,7 +35,7 @@ const ShoesID = () => {
     userSnap.then((res) => {
       setUser(res.data());
     });
-  }, [user]);
+  }, []);
 
   const AddToBag = async () => {
     if (user) {
@@ -55,7 +55,8 @@ const ShoesID = () => {
           price: value?.price.price + "$",
           color: value?.color.color,
           details: value?.details.details,
-          shoesID: value.shoesID.shoesID,
+          shoesID: value?.shoesID.shoesID,
+          imgurl: value?.imgurl.imgurl,
           size: sizeChosen,
         }).catch((error) => {
           notifyError("An error have occured");

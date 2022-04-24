@@ -10,9 +10,9 @@ import PageNotFound from "./Pages/PageNotFound";
 import ShoesID from "./Components/ShoesID/[ShoesID]";
 import Shoes from "./Pages/Shoes";
 import { Footer } from "./Components/Footer/Footer";
-import Cart from "./Pages/Cart/Cart";
 import { ProtectedRoute } from "./Components/ProtectedRoute";
 import Signin from "./Components/Signin/Signin";
+import Bag from "./Pages/Bag/Bag";
 
 function App() {
   const [IsAuthenticated, setIsAuthenticated] = useState(false);
@@ -40,7 +40,7 @@ function App() {
         <Route path="shoes/:shoesID" element={<ShoesID />} />
 
         <Route element={<ProtectedRoute authenticated={IsAuthenticated} />}>
-          <Route path="cart" element={<Cart />} />
+          <Route path="cart" element={<Bag />} />
         </Route>
 
         <Route path="signin" element={<Signin />} />

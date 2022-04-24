@@ -1,4 +1,4 @@
-.cart_page {
+.bag_page {
     width: 100%;
     display: flex;
     flex-wrap: nowrap;
@@ -8,13 +8,13 @@
     align-items: center;
 }
 
-.cart_page_S_bag_items {
+.bag_page_S_bag_items {
     min-width: 280px;
     max-width: 500px;
     max-height: 500px;
     width: 50%;
 }
 
-/* .cart_page_S_bag_items_info{
+/* .bag_page_S_bag_items_info{
 
 } */
