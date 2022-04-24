@@ -29,10 +29,12 @@ const Item = ({ id, name, imgurl, details, color, price, size, shoesID }) => {
         </section>
         <section className="item_section_bottom">
           <span className="bottom_span">{details}</span>
-          <span className="bottom_span">{color}</span>
-          <span className="bottom_span">{size}</span>
+          <span className="bottom_span">color: {color}</span>
+          <span className="bottom_span">size: {size}</span>
         </section>
-        <span onClick={RemoveItem}>remove item</span>
+        <button onClick={RemoveItem} className="bottom_removeitem_btn">
+          remove item
+        </button>
       </div>
     </div>
   );

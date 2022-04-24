@@ -1,5 +1,5 @@
 import "./Header.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Googleimg from "../Images/google.png";
 // mui
@@ -19,7 +19,9 @@ import ListItemText from "@mui/material/ListItemText";
 // firebase
 import { logOut, signInWithGoogle } from "../Functions";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../../Firebase/firebase";
+import { auth, db } from "../../Firebase/firebase";
+import { Badge } from "@mui/material";
+import { collection, getDoc, onSnapshot } from "firebase/firestore";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -65,6 +67,29 @@ export default function Header() {
     handleDrawer();
   }
 
+  const bagRef = collection(
+    db,
+    "users",
+    auth.currentUser ? auth.currentUser.email : "guest",
+    "bag"
+  );
+
+  const bagSnap = getDoc(bagRef);
+
+  const [BagItems, setBagItems] = useState(0);
+  useEffect(() => {
+    onSnapshot(bagRef, (snapshot) => {
+      // ...
+      setBagItems(snapshot.size);
+      // setBag(
+      //   snapshot.docs.map((doc) => ({
+      //     id: doc.id,
+      //     data: doc.data(),
+      //   }))
+      // );
+    });
+  }, []);
+
   return (
     <header className="header" onLoad={updateUserState}>
       <div className="header_div_logo">
@@ -91,7 +116,16 @@ export default function Header() {
             navigate("cart");
           }}
         >
-          <ShoppingBagOutlinedIcon />
+          <Badge
+            color="primary"
+            badgeContent={BagItems}
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+          >
+            <ShoppingBagOutlinedIcon />
+          </Badge>
         </IconButton>
 
         <Box onLoad={updateUserState}>
