@@ -21,6 +21,7 @@ const ShoesID = () => {
 
   const [sizeChosen, setSizeChosen] = useState("");
   const [user, setUser] = useState(null);
+  const [ShoesExists, setShoesExists] = useState(Boolean);
 
   const userRef = doc(
     db,
@@ -36,33 +37,32 @@ const ShoesID = () => {
     });
   }, [user]);
 
-  const AddToCart = async () => {
+  const AddToBag = async () => {
     if (user) {
       // User is signed in
       if (sizeChosen !== "") {
-        await setDoc(
-          userRef,
-          {
-            bag: {
-              ...user.bag,
+        const userBagRef = doc(
+          db,
+          "users",
+          auth.currentUser ? auth.currentUser.email : "guest",
+          "bag",
+          value.shoesID.shoesID
+        );
 
-              [value.shoesID.shoesID]: {
-                name: value?.name.name,
-                price: value?.price.price + "$",
-                color: value?.color.color,
-                details: value?.details.details,
-                shoesID: value.shoesID.shoesID,
-                size: sizeChosen,
-              },
-            },
-          },
-          { merge: true }
-        ).catch((error) => {
+        await setDoc(userBagRef, {
+          // shoes data set to the user bag
+          name: value?.name.name,
+          price: value?.price.price + "$",
+          color: value?.color.color,
+          details: value?.details.details,
+          shoesID: value.shoesID.shoesID,
+          size: sizeChosen,
+        }).catch((error) => {
           notifyError("An error have occured");
           console.log(error);
         });
 
-        notifySuccess("👟 " + [value?.name.name] + " added to cart!");
+        notifySuccess("👟 " + [value?.name.name] + " added to bag!");
       } else {
         notifyWarn("You did not select a size for your shoes");
       }
@@ -72,11 +72,20 @@ const ShoesID = () => {
     }
   };
 
-  // if (user) {
-  //   let x = user.bag;
+  if (user) {
+    const userBagReferance = doc(
+      db,
+      "users",
+      auth.currentUser ? auth.currentUser.email : "guest",
+      "bag",
+      value.shoesID.shoesID
+    );
+    const UserBagSnap = getDoc(userBagReferance);
 
-  //   console.log([x].map((cartItem) => console.log("item=", cartItem)));
-  // }
+    UserBagSnap.then((snap) => {
+      setShoesExists(snap.exists());
+    });
+  }
 
   return (
     <div className="shoesID__page">
@@ -140,12 +149,21 @@ const ShoesID = () => {
           </span>
         </span>
 
-        <button onClick={AddToCart} className="shoesID__section_addtocart_btn">
-          ADD TO CART
-        </button>
-
-        {/* check if the user bag has the id of the shoes else return add to cart btn */}
-        {/* {user ? user.bag : null} */}
+        {/* check if the user bag has the id of the shoes else return add to bag btn */}
+        {user ? (
+          ShoesExists ? (
+            <button className="shoesID__section_addtobag_btn_disabled">
+              SHOES IN BAG
+            </button>
+          ) : (
+            <button
+              onClick={AddToBag}
+              className="shoesID__section_addtobag_btn"
+            >
+              ADD TO BAG
+            </button>
+          )
+        ) : null}
       </section>
     </div>
   );

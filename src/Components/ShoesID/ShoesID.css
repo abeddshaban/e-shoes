@@ -82,7 +82,7 @@
   color: rgb(0, 0, 0);
 }
 
-.shoesID__section_addtocart_btn {
+.shoesID__section_addtobag_btn {
   width: 100%;
   padding: 8px;
   margin-top: 10px;
@@ -95,10 +95,24 @@
   cursor: pointer;
   transition-duration: 0.3s;
 }
-.shoesID__section_addtocart_btn:hover {
+.shoesID__section_addtobag_btn:hover {
   color: rgb(0, 0, 0);
   background-color: whitesmoke;
 }
+.shoesID__section_addtobag_btn_disabled{
+  width: 100%;
+  padding: 8px;
+  margin-top: 10px;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  font-size: 17px;
+  color: rgb(0, 0, 0);
+  background-color: whitesmoke;
+  border: none;
+  cursor: no-drop;
+  transition-duration: 0.3s;
+}
+
 
 @media (max-width: 500px) {
   .shoesID__page {
