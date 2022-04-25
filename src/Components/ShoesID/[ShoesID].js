@@ -2,7 +2,7 @@ import "./ShoesID.css";
 
 import { useLocation, useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc, setDoc } from "firebase/firestore";
 import { auth, db } from "../../Firebase/firebase";
 
 import Box from "@mui/material/Box";
@@ -41,11 +41,13 @@ const ShoesID = () => {
       // User is signed in
       if (sizeChosen !== "") {
         const userBagRef = doc(
-          db,
-          "users",
-          auth.currentUser ? auth.currentUser.email : "guest",
-          "bag",
-          value.shoesID.shoesID
+          collection(
+            db,
+            "users",
+            auth.currentUser ? auth.currentUser.email : "guest",
+            "bag"
+            // value.shoesID.shoesID
+          )
         );
 
         await setDoc(userBagRef, {
@@ -57,6 +59,7 @@ const ShoesID = () => {
           shoesID: value?.shoesID.shoesID,
           imgurl: value?.imgurl.imgurl,
           size: sizeChosen,
+          docID: userBagRef.id,
         }).catch((error) => {
           notifyError("An error have occured");
           console.log(error);

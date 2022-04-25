@@ -2,21 +2,29 @@ import { deleteDoc, doc } from "firebase/firestore";
 import { auth, db } from "../../Firebase/firebase";
 import "./Item.css";
 
-const Item = ({ id, name, imgurl, details, color, price, size, shoesID }) => {
+const Item = ({
+  id,
+  name,
+  imgurl,
+  details,
+  color,
+  price,
+  size,
+  shoesID,
+  docID,
+}) => {
   const RemoveItem = async () => {
-    try {
-      await deleteDoc(
-        doc(
-          db,
-          "users",
-          auth.currentUser ? auth.currentUser.email : "guest",
-          "bag",
-          shoesID
-        )
-      );
-    } catch (err) {
+    await deleteDoc(
+      doc(
+        db,
+        "users",
+        auth.currentUser ? auth.currentUser.email : "guest",
+        "bag",
+        docID
+      )
+    ).catch((err) => {
       console.log(err);
-    }
+    });
   };
 
   return (

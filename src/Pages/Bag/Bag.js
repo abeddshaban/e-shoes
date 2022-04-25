@@ -8,14 +8,9 @@ import { Link } from "react-router-dom";
 function Bag() {
   const [bag, setBag] = useState([]);
 
-  const bagRef = collection(
-    db,
-    "users",
-    auth.currentUser ? auth.currentUser.email : "guest",
-    "bag"
-  );
+  const bagRef = collection(db, "users", auth.currentUser.email, "bag");
 
-  useEffect(() => {
+  const updateBag = () => {
     onSnapshot(bagRef, (snapshot) => {
       // ...
       setBag(
@@ -25,6 +20,11 @@ function Bag() {
         }))
       );
     });
+    console.log("run");
+  };
+
+  useEffect(() => {
+    updateBag();
   }, []);
 
   return (
@@ -36,11 +36,21 @@ function Bag() {
           bag.map(
             ({
               id,
-              data: { name, imgurl, details, color, price, size, shoesID },
+              data: {
+                name,
+                imgurl,
+                details,
+                color,
+                price,
+                size,
+                shoesID,
+                docID,
+              },
             }) => (
               <Item
                 key={id}
                 id={id}
+                docID={docID}
                 name={name}
                 imgurl={imgurl}
                 details={details}
