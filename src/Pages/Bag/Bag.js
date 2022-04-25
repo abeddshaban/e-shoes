@@ -1,32 +1,12 @@
 import "./Bag.css";
 import { useEffect, useState } from "react";
-import { collection, doc, getDoc, onSnapshot } from "firebase/firestore";
+import { collection, onSnapshot } from "firebase/firestore";
 import { auth, db } from "../../Firebase/firebase";
 import Item from "./Item";
 import { Link } from "react-router-dom";
 
 function Bag() {
-  const [user, setUser] = useState([]);
-  const [available, setAvailable] = useState(false);
   const [bag, setBag] = useState([]);
-
-  const userRef = doc(db, "users", auth.currentUser.email);
-  const userSnap = getDoc(userRef);
-
-  // useEffect(() => {
-  //   userSnap.then((res) => {
-  //     setUser(res.data());
-  //     if (!user == "") {
-  //       if (available == false) {
-  //         setAvailable(true);
-  //       }
-  //     } else {
-  //       if (available == true) {
-  //         setAvailable(false);
-  //       }
-  //     }
-  //   });
-  // }, []);
 
   const bagRef = collection(
     db,
@@ -50,7 +30,7 @@ function Bag() {
   return (
     <div className="bag_page">
       <section className="bag_page_S_bag_items">
-        {bag.length == 0 ? (
+        {bag.length === 0 ? (
           <Link to="/">search for shoes</Link>
         ) : (
           bag.map(
