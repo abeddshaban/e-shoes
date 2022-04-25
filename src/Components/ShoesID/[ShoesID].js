@@ -21,7 +21,6 @@ const ShoesID = () => {
 
   const [sizeChosen, setSizeChosen] = useState("");
   const [user, setUser] = useState(null);
-  const [ShoesExists, setShoesExists] = useState(Boolean);
 
   const userRef = doc(
     db,
@@ -35,7 +34,7 @@ const ShoesID = () => {
     userSnap.then((res) => {
       setUser(res.data());
     });
-  }, []);
+  }, [userSnap]);
 
   const AddToBag = async () => {
     if (user) {
@@ -62,6 +61,7 @@ const ShoesID = () => {
           notifyError("An error have occured");
           console.log(error);
         });
+        setSizeChosen("");
 
         notifySuccess("👟 " + [value?.name.name] + " added to bag!");
       } else {
@@ -72,21 +72,6 @@ const ShoesID = () => {
       navigate("/signin");
     }
   };
-
-  if (user) {
-    const userBagReferance = doc(
-      db,
-      "users",
-      auth.currentUser ? auth.currentUser.email : "guest",
-      "bag",
-      value.shoesID.shoesID
-    );
-    const UserBagSnap = getDoc(userBagReferance);
-
-    UserBagSnap.then((snap) => {
-      setShoesExists(snap.exists());
-    });
-  }
 
   return (
     <div className="shoesID__page">
@@ -150,20 +135,11 @@ const ShoesID = () => {
           </span>
         </span>
 
-        {/* check if the user bag has the id of the shoes else return add to bag btn */}
-        {user ? (
-          ShoesExists ? (
-            <button className="shoesID__section_addtobag_btn_disabled">
-              SHOES IN BAG
-            </button>
-          ) : (
-            <button
-              onClick={AddToBag}
-              className="shoesID__section_addtobag_btn"
-            >
-              ADD TO BAG
-            </button>
-          )
+        {/* if user exists return btn else null */}
+        {auth.currentUser ? (
+          <button onClick={AddToBag} className="shoesID__section_addtobag_btn">
+            ADD TO BAG
+          </button>
         ) : null}
       </section>
     </div>

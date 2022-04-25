@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { collection, doc, getDoc, onSnapshot } from "firebase/firestore";
 import { auth, db } from "../../Firebase/firebase";
 import Item from "./Item";
+import { Link } from "react-router-dom";
 
 function Bag() {
   const [user, setUser] = useState([]);
@@ -12,20 +13,20 @@ function Bag() {
   const userRef = doc(db, "users", auth.currentUser.email);
   const userSnap = getDoc(userRef);
 
-  useEffect(() => {
-    userSnap.then((res) => {
-      setUser(res.data());
-      if (!user == "") {
-        if (available == false) {
-          setAvailable(true);
-        }
-      } else {
-        if (available == true) {
-          setAvailable(false);
-        }
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   userSnap.then((res) => {
+  //     setUser(res.data());
+  //     if (!user == "") {
+  //       if (available == false) {
+  //         setAvailable(true);
+  //       }
+  //     } else {
+  //       if (available == true) {
+  //         setAvailable(false);
+  //       }
+  //     }
+  //   });
+  // }, []);
 
   const bagRef = collection(
     db,
@@ -43,33 +44,34 @@ function Bag() {
           data: doc.data(),
         }))
       );
-      console.log(bag, "bag");
     });
   }, []);
 
   return (
     <div className="bag_page">
       <section className="bag_page_S_bag_items">
-        {!available
-          ? null
-          : bag.map(
-              ({
-                id,
-                data: { name, imgurl, details, color, price, size, shoesID },
-              }) => (
-                <Item
-                  key={id}
-                  id={id}
-                  name={name}
-                  imgurl={imgurl}
-                  details={details}
-                  color={color}
-                  price={price}
-                  size={size}
-                  shoesID={shoesID}
-                />
-              )
-            )}
+        {bag.length == 0 ? (
+          <Link to="/">search for shoes</Link>
+        ) : (
+          bag.map(
+            ({
+              id,
+              data: { name, imgurl, details, color, price, size, shoesID },
+            }) => (
+              <Item
+                key={id}
+                id={id}
+                name={name}
+                imgurl={imgurl}
+                details={details}
+                color={color}
+                price={price}
+                size={size}
+                shoesID={shoesID}
+              />
+            )
+          )
+        )}
       </section>
       <section className="bag_page_S_bag_items_info">info</section>
     </div>

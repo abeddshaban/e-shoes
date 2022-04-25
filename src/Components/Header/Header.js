@@ -21,7 +21,7 @@ import { logOut, signInWithGoogle } from "../Functions";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../../Firebase/firebase";
 import { Badge } from "@mui/material";
-import { collection, getDoc, onSnapshot } from "firebase/firestore";
+import { collection, onSnapshot } from "firebase/firestore";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -44,6 +44,8 @@ export default function Header() {
 
   const [UserState, setUserState] = useState(Boolean);
 
+  const [BagItems, setBagItems] = useState(0);
+
   function updateUserState() {
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -51,6 +53,7 @@ export default function Header() {
       } else {
         // User is signed out
         setUserState(false);
+        setBagItems(0);
       }
     });
   }
@@ -74,21 +77,14 @@ export default function Header() {
     "bag"
   );
 
-  const bagSnap = getDoc(bagRef);
-
-  const [BagItems, setBagItems] = useState(0);
   useEffect(() => {
     onSnapshot(bagRef, (snapshot) => {
       // ...
-      setBagItems(snapshot.size);
-      // setBag(
-      //   snapshot.docs.map((doc) => ({
-      //     id: doc.id,
-      //     data: doc.data(),
-      //   }))
-      // );
+      if (auth.currentUser) {
+        setBagItems(snapshot.size);
+      }
     });
-  }, []);
+  });
 
   return (
     <header className="header" onLoad={updateUserState}>
