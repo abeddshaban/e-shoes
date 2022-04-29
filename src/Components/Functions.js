@@ -37,6 +37,16 @@ export const signInWithGoogle = () => {
           analyser: false,
         },
         ordersDelivered: {},
+        address: {
+          name: user.displayName,
+          email: user.email,
+          phonenb: user.phoneNumber || "",
+          address: "",
+          city: "",
+          country: "",
+          state: "",
+          zipcode: "",
+        },
       });
     })
     .catch((error) => {

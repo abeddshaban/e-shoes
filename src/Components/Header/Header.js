@@ -84,6 +84,7 @@ export default function Header() {
         setBagItems(snapshot.size);
       }
     });
+    console.log("we are moving");
   });
 
   return (

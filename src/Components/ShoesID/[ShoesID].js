@@ -2,7 +2,7 @@ import "./ShoesID.css";
 
 import { useLocation, useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import { addDoc, collection, doc, getDoc, setDoc } from "firebase/firestore";
+import { collection, doc, getDoc, setDoc } from "firebase/firestore";
 import { auth, db } from "../../Firebase/firebase";
 
 import Box from "@mui/material/Box";
@@ -34,7 +34,7 @@ const ShoesID = () => {
     userSnap.then((res) => {
       setUser(res.data());
     });
-  }, [userSnap]);
+  }, []);
 
   const AddToBag = async () => {
     if (user) {

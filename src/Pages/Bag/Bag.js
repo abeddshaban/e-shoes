@@ -20,7 +20,6 @@ function Bag() {
         }))
       );
     });
-    console.log("run");
   };
 
   useEffect(() => {
