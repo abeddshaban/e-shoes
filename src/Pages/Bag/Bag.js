@@ -75,9 +75,11 @@ function Bag() {
       <section className="bag_page_S_bag_items_info">
         <span className="info_summary">Summary</span>
 
-        <span className="">Items: {BagSize}</span>
+        <span className="info_bagsize">Items: {BagSize}</span>
 
-        <span className="">Total: {GetBagTotalPrice(bag)}$</span>
+        <span className="info_totalprice">
+          Total: <strong>{GetBagTotalPrice(bag)}</strong>$
+        </span>
       </section>
     </div>
   );
