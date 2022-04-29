@@ -7,24 +7,34 @@ import { Link } from "react-router-dom";
 
 function Bag() {
   const [bag, setBag] = useState([]);
+  const [BagSize, setBagSize] = useState();
 
   const bagRef = collection(db, "users", auth.currentUser.email, "bag");
 
   const updateBag = () => {
     onSnapshot(bagRef, (snapshot) => {
       // ...
+
       setBag(
         snapshot.docs.map((doc) => ({
           id: doc.id,
           data: doc.data(),
         }))
       );
+
+      setBagSize(snapshot.size);
     });
   };
 
   useEffect(() => {
     updateBag();
   }, []);
+
+  const GetBagTotalPrice = (basket) =>
+    basket?.reduce(
+      (amount, item) => Number(item.data.price) + Number(amount),
+      0
+    );
 
   return (
     <div className="bag_page">
@@ -62,7 +72,13 @@ function Bag() {
           )
         )}
       </section>
-      <section className="bag_page_S_bag_items_info">info</section>
+      <section className="bag_page_S_bag_items_info">
+        <span className="info_summary">Summary</span>
+
+        <span className="">Items: {BagSize}</span>
+
+        <span className="">Total: {GetBagTotalPrice(bag)}$</span>
+      </section>
     </div>
   );
 }

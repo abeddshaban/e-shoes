@@ -5,13 +5,14 @@
     flex-direction: row;
     align-content: flex-start;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     padding: 2%;
 }
 
 .bag_page_S_bag_items {
     width: 100%;
     flex: 0.7;
+    padding-right: 20px;
 }
 
 .bag_page_S_bag_items_info{
@@ -20,6 +21,11 @@
     justify-content: center;
     flex-wrap: nowrap;
     flex-direction: column;
-    align-items: center;
-    align-content: center;    
+    align-items: flex-start;
+    align-content: center;
+    border: 1px solid black;
+}
+
+.info_summary{
+    font-size: larger;
 }

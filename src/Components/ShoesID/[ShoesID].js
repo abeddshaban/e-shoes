@@ -53,7 +53,7 @@ const ShoesID = () => {
         await setDoc(userBagRef, {
           // shoes data set to the user bag
           name: value?.name.name,
-          price: value?.price.price + "$",
+          price: value?.price.price,
           color: value?.color.color,
           details: value?.details.details,
           shoesID: value?.shoesID.shoesID,

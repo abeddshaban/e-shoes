@@ -33,7 +33,7 @@ const Item = ({
       <div className="item_section">
         <section className="item_section_top">
           <span>{name}</span>
-          <span>{price}</span>
+          <span>{price}$</span>
         </section>
         <section className="item_section_bottom">
           <span className="bottom_span">{details}</span>
