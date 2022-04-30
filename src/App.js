@@ -13,6 +13,7 @@ import { Footer } from "./Components/Footer/Footer";
 import { ProtectedRoute } from "./Components/ProtectedRoute";
 import Signin from "./Components/Signin/Signin";
 import Bag from "./Pages/Bag/Bag";
+import Checkout from "./Components/Checkout/Checkout";
 
 function App() {
   const [IsAuthenticated, setIsAuthenticated] = useState(false);
@@ -41,6 +42,7 @@ function App() {
 
         <Route element={<ProtectedRoute authenticated={IsAuthenticated} />}>
           <Route path="cart" element={<Bag />} />
+          <Route path="checkout" element={<Checkout />} />
         </Route>
 
         <Route path="signin" element={<Signin />} />

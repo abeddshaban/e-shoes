@@ -3,9 +3,10 @@ import { useEffect, useState } from "react";
 import { collection, onSnapshot } from "firebase/firestore";
 import { auth, db } from "../../Firebase/firebase";
 import Item from "./Item";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Bag() {
+  let navigate = useNavigate();
   const [bag, setBag] = useState([]);
   const [BagSize, setBagSize] = useState();
 
@@ -93,7 +94,14 @@ function Bag() {
           </span>
         </span>
 
-        <button className="info_btn">Checkout</button>
+        <button
+          onClick={() => {
+            navigate("/checkout");
+          }}
+          className="info_btn"
+        >
+          Checkout
+        </button>
       </section>
     </div>
   );

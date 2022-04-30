@@ -11,7 +11,7 @@ export const ProductItem = ({
   details,
   color,
 }) => {
-  const [data, setData] = useState({
+  const [data] = useState({
     name: { name },
     imgurl: { imgurl },
     price: { price },
