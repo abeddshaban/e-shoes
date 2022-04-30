@@ -3,13 +3,11 @@ import "./Signin.css";
 import { onAuthStateChanged } from "firebase/auth";
 import { useState } from "react";
 import { auth } from "../../Firebase/firebase";
-import { Navigate } from "react-router-dom";
-
-// import Googleimg from "../Images/google.png";
-
-// import { signInWithGoogle } from "../Functions";
+import { Navigate, useNavigate } from "react-router-dom";
+import { Button } from "@mui/material";
 
 const Signin = () => {
+  let navigate = useNavigate();
   const [IsAuthenticated, setIsAuthenticated] = useState(false);
 
   function checkUserAuthentication() {
@@ -29,19 +27,19 @@ const Signin = () => {
   } else {
     return (
       <div onLoad={checkUserAuthentication} className="signin_page">
-        sorry you are not signed in!
+        <span>sorry you are not signed in!</span>
+        <Button
+          onClick={() => {
+            navigate("/");
+          }}
+          sx={{ marginTop: "8px" }}
+          variant="outlined"
+        >
+          go back to home
+        </Button>
       </div>
     );
   }
-  // return (
-  //   <div className="signin_page">
-  //     {/* <button onClick={signInWithGoogle} className="signin_btn">
-  //       Sign-in
-  //       <img src={Googleimg} alt="google" className="signin_google_img" />
-  //     </button> */}
-  //     sorry you are not signed in!
-  //   </div>
-  // );
 };
 
 export default Signin;
