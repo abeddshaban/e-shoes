@@ -40,7 +40,13 @@ function Bag() {
     <div className="bag_page">
       <section className="bag_page_S_bag_items">
         {bag.length === 0 ? (
-          <Link to="/">search for shoes</Link>
+          <>
+            It looks like you do not have any items in your cart.{" "}
+            <Link to="/" className="bag_page_link">
+              Click here
+            </Link>{" "}
+            to search for some !{" "}
+          </>
         ) : (
           bag.map(
             ({
@@ -75,11 +81,19 @@ function Bag() {
       <section className="bag_page_S_bag_items_info">
         <span className="info_summary">Summary</span>
 
-        <span className="info_bagsize">Items: {BagSize}</span>
+        <span className="info_bagsize">
+          <span>Items:</span>
+          <span>{BagSize}</span>
+        </span>
 
         <span className="info_totalprice">
-          Total: <strong>{GetBagTotalPrice(bag)}</strong>$
+          <span>Total:</span>
+          <span className="info_totalprice_price">
+            ${GetBagTotalPrice(bag)}
+          </span>
         </span>
+
+        <button className="info_btn">Checkout</button>
       </section>
     </div>
   );

@@ -1,31 +1,106 @@
 .bag_page {
-    width: 96%;
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: row;
-    align-content: flex-start;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 2%;
+  width: 96%;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-content: flex-start;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 2%;
 }
 
 .bag_page_S_bag_items {
+  width: 100%;
+  flex: 0.7;
+  padding-right: 20px;
+}
+
+.bag_page_link{
+    color: grey;
+    text-decoration: underline;
+
+}
+.bag_page_link:hover{
+    color: rgb(83, 83, 83);
+}
+.bag_page_S_bag_items_info {
+  flex: 0.3;
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  align-items: flex-start;
+  align-content: center;
+}
+
+.info_summary {
+  font-size: larger;
+  padding-bottom: 16px;
+}
+
+.info_bagsize {
+  width: 100%;
+  padding-bottom: 8px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.info_totalprice {
+  width: 100%;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  padding: 16px 0px 12px;
+  border-top: 1px solid rgb(229, 229, 229);
+  border-bottom: 1px solid rgb(229, 229, 229);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: space-between;
+  align-items: center;
+}
+.info_totalprice_price {
+  font-weight: 700;
+}
+
+.info_btn {
+  display: inline-block;
+  vertical-align: top;
+  white-space: nowrap;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease 0s;
+  background: rgb(17, 17, 17);
+  color: rgb(255, 255, 255);
+  line-height: 1.5;
+  margin-bottom: 12px;
+  -webkit-box-pack: center;
+  justify-content: center;
+  width: 100%;
+  padding: 18px 24px;
+  border-radius: 30px;
+  font-weight: 500;
+  font-size: 16px;
+  border: none;
+}
+.info_btn:hover {
+  background: rgba(0, 0, 0, 0.75);
+}
+
+@media (max-width: 600px) {
+  .bag_page_S_bag_items {
+    width: 96%;
+  }
+
+  .bag_page_S_bag_items_info {
     width: 100%;
-    flex: 0.7;
-    padding-right: 20px;
-}
-
-.bag_page_S_bag_items_info{
-    flex: .3;
-    display: flex;
-    justify-content: center;
-    flex-wrap: nowrap;
+  }
+  .bag_page {
     flex-direction: column;
-    align-items: flex-start;
-    align-content: center;
-    border: 1px solid black;
-}
-
-.info_summary{
-    font-size: larger;
+  }
 }
