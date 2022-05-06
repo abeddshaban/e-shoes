@@ -5463,6 +5463,11 @@
     "has" "^1.0.3"
     "side-channel" "^1.0.4"
 
+"intl-tel-input@^17.0.16", "intl-tel-input@latest":
+  "integrity" "sha512-aDcfhkl+wf9NYYpvA2v40dPiNUZHLlORAaKogC85IwfN0v6B2jJtq+NyMd0GgM0MCAZp8N2dNG2oygz9pQVVaQ=="
+  "resolved" "https://registry.npmjs.org/intl-tel-input/-/intl-tel-input-17.0.16.tgz"
+  "version" "17.0.16"
+
 "ipaddr.js@^2.0.1":
   "integrity" "sha512-1qTgH9NG+IIJ4yfKs2e6Pp1bZg8wbDbKHT21HrLIeYBTRLgMYKnMTPAuI3Lcs61nfx5h1xlXnbJtH1kX5/d/ng=="
   "resolved" "https://registry.npmjs.org/ipaddr.js/-/ipaddr.js-2.0.1.tgz"
@@ -6385,6 +6390,11 @@
   "version" "6.0.0"
   dependencies:
     "p-locate" "^5.0.0"
+
+"lodash-es@latest":
+  "integrity" "sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw=="
+  "resolved" "https://registry.npmjs.org/lodash-es/-/lodash-es-4.17.21.tgz"
+  "version" "4.17.21"
 
 "lodash.camelcase@^4.3.0":
   "integrity" "sha1-soqmKIorn8ZRA1x3EfZathkDMaY="
@@ -7774,6 +7784,13 @@
   "resolved" "https://registry.npmjs.org/react-error-overlay/-/react-error-overlay-6.0.10.tgz"
   "version" "6.0.10"
 
+"react-intl-tel-input-v2@^1.0.8":
+  "integrity" "sha512-f7Hf/XGud3/h1NZzprMexboJghTTcgAQ7nZXl/OO/Q98QGu3vxYnqfTOZneUgUzj7zdMG/B5YM+TezpB8rk0xw=="
+  "resolved" "https://registry.npmjs.org/react-intl-tel-input-v2/-/react-intl-tel-input-v2-1.0.8.tgz"
+  "version" "1.0.8"
+  dependencies:
+    "lodash-es" "latest"
+
 "react-is@^16.13.1":
   "integrity" "sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ=="
   "resolved" "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz"
@@ -7881,7 +7898,7 @@
     "loose-envify" "^1.4.0"
     "prop-types" "^15.6.2"
 
-"react@*", "react@^17.0.0 || ^18.0.0", "react@^18.0.0", "react@>= 16", "react@>=16", "react@>=16.6.0", "react@>=16.8", "react@>=16.8.0":
+"react@*", "react@^17.0.0 || ^18.0.0", "react@^18.0.0", "react@>= 16", "react@>=16", "react@>=16.6.0", "react@>=16.8", "react@>=16.8.0", "react@latest":
   "integrity" "sha512-x+VL6wbT4JRVPm7EGxXhZ8w8LTROaxPXOqhlGyVSrv0sB1jkyFGgXxJ8LVoPRLvPR6/CIZGFmfzqUa2NYeMr2A=="
   "resolved" "https://registry.npmjs.org/react/-/react-18.0.0.tgz"
   "version" "18.0.0"

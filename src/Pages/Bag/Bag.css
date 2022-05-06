@@ -9,19 +9,25 @@
   padding: 2%;
 }
 
+.bag_link {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  cursor: pointer;
+}
+
 .bag_page_S_bag_items {
   width: 100%;
   flex: 0.7;
   padding-right: 20px;
 }
 
-.bag_page_link{
-    color: grey;
-    text-decoration: underline;
-
+.bag_page_link {
+  color: grey;
+  text-decoration: underline;
 }
-.bag_page_link:hover{
-    color: rgb(83, 83, 83);
+.bag_page_link:hover {
+  color: rgb(83, 83, 83);
 }
 .bag_page_S_bag_items_info {
   flex: 0.3;

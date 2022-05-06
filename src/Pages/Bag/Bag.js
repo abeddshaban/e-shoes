@@ -94,14 +94,9 @@ function Bag() {
           </span>
         </span>
 
-        <button
-          onClick={() => {
-            navigate("/checkout");
-          }}
-          className="info_btn"
-        >
-          Checkout
-        </button>
+        <Link to="/checkout" state={{ bag: bag }} className="bag_link">
+          <button className="info_btn">Checkout</button>
+        </Link>
       </section>
     </div>
   );

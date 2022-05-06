@@ -1,10 +1,15 @@
 import { TextField } from "@mui/material";
-import { collection, doc, getDoc, onSnapshot } from "firebase/firestore";
-import { useEffect, useState } from "react";
-import { auth, db } from "../../Firebase/firebase";
+import { useState } from "react";
+import { useLocation } from "react-router-dom";
+import Item from "../../Pages/Bag/Item";
 import "./Checkout.css";
 
 const Checkout = () => {
+  const location = useLocation();
+  let value = location.state.bag;
+
+  console.log(value);
+
   const [userdata, setuserdata] = useState({
     firstname: "",
     lastname: "",
@@ -135,7 +140,7 @@ const Checkout = () => {
             value={userdata.phonenb}
             className="textlable"
             required
-            label="Phone Number"
+            label="Phone Number (International format)"
             variant="outlined"
             onChange={(e) => {
               const { value } = e.target;
@@ -169,6 +174,37 @@ const Checkout = () => {
             <div>{userdata.email}</div>
 
             <div>{userdata.phonenb}</div>
+
+            <hr />
+
+            {value.map(
+              ({
+                id,
+                data: {
+                  name,
+                  imgurl,
+                  details,
+                  color,
+                  price,
+                  size,
+                  shoesID,
+                  docID,
+                },
+              }) => (
+                <Item
+                  key={id}
+                  id={id}
+                  docID={docID}
+                  name={name}
+                  imgurl={imgurl}
+                  details={details}
+                  color={color}
+                  price={price}
+                  size={size}
+                  shoesID={shoesID}
+                />
+              )
+            )}
           </div>
         )}
       </div>
