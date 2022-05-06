@@ -46,7 +46,6 @@ const ShoesID = () => {
             "users",
             auth.currentUser ? auth.currentUser.email : "guest",
             "bag"
-            // value.shoesID.shoesID
           )
         );
 

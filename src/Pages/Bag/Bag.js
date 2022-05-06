@@ -3,10 +3,9 @@ import { useEffect, useState } from "react";
 import { collection, onSnapshot } from "firebase/firestore";
 import { auth, db } from "../../Firebase/firebase";
 import Item from "./Item";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Bag() {
-  let navigate = useNavigate();
   const [bag, setBag] = useState([]);
   const [BagSize, setBagSize] = useState();
 

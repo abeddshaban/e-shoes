@@ -1,13 +1,31 @@
 import { TextField } from "@mui/material";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  onSnapshot,
+  setDoc,
+} from "firebase/firestore";
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { auth, db } from "../../Firebase/firebase";
+import { notifyError, notifySuccess } from "../toastify-popup";
 import "./Checkout.css";
 import { CheckoutItem } from "./CheckoutItem";
 
 const Checkout = () => {
+  function sleep(time) {
+    console.log("waiting");
+    return new Promise((resolve) => setTimeout(resolve, time));
+  }
+
   const location = useLocation();
   let value = location.state.bag;
   let totalPrice = location.state.totalPrice;
+
+  let navigate = useNavigate();
+
+  const [showOrederBox, setshowOrederBox] = useState(true);
 
   const [userdata, setuserdata] = useState({
     firstname: "",
@@ -20,8 +38,36 @@ const Checkout = () => {
     postalcode: "",
   });
 
-  const SubmitOrder = () => {
-    console.log("order");
+  const SubmitOrder = async () => {
+    console.log("ordered");
+
+    await setDoc(doc(collection(db, "orders")), {
+      items: value,
+      address: userdata,
+    });
+
+    const userBagRef = collection(db, "users", auth.currentUser.email, "bag");
+
+    onSnapshot(userBagRef, (snapshot) => {
+      // ...
+      snapshot.forEach((doc) => {
+        deleteDoc(doc.ref).catch((error) => {
+          notifyError("An error have occured");
+
+          console.log(error);
+        });
+      });
+    });
+
+    notifySuccess("📦 ordered successfully!");
+
+    console.log("deleted");
+
+    setshowOrederBox(false);
+
+    // await sleep(9000);
+
+    navigate("/");
   };
   return (
     <div className="checkout_page">
@@ -161,7 +207,8 @@ const Checkout = () => {
         !userdata.address == "" &&
         !userdata.city == "" &&
         !userdata.state == "" &&
-        !userdata.postalcode == "" ? (
+        !userdata.postalcode == "" &&
+        showOrederBox ? (
           <>
             <div className="overview">
               <div>
@@ -210,6 +257,7 @@ const Checkout = () => {
                   />
                 )
               )}
+
               <div>
                 <button onClick={SubmitOrder}>order</button>
               </div>
