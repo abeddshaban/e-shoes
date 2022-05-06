@@ -1,14 +1,13 @@
 import { TextField } from "@mui/material";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
-import Item from "../../Pages/Bag/Item";
 import "./Checkout.css";
+import { CheckoutItem } from "./CheckoutItem";
 
 const Checkout = () => {
   const location = useLocation();
   let value = location.state.bag;
-
-  console.log(value);
+  let totalPrice = location.state.totalPrice;
 
   const [userdata, setuserdata] = useState({
     firstname: "",
@@ -21,6 +20,9 @@ const Checkout = () => {
     postalcode: "",
   });
 
+  const SubmitOrder = () => {
+    console.log("order");
+  };
   return (
     <div className="checkout_page">
       <div className="checkout_box">
@@ -152,61 +154,68 @@ const Checkout = () => {
           />
         </div>
 
-        {(userdata.firstname == "") &
-        (userdata.lastname == "") &
-        (userdata.email == "") &
-        (userdata.phonenb == "") &
-        (userdata.address == "") &
-        (userdata.city == "") &
-        (userdata.state == "") &
-        (userdata.postalcode == "") ? null : (
-          <div className="overview">
-            <div>
-              {userdata.firstname} {userdata.lastname}
+        {!userdata.firstname == "" &&
+        !userdata.lastname == "" &&
+        !userdata.email == "" &&
+        !userdata.phonenb == "" &&
+        !userdata.address == "" &&
+        !userdata.city == "" &&
+        !userdata.state == "" &&
+        !userdata.postalcode == "" ? (
+          <>
+            <div className="overview">
+              <div>
+                {userdata.firstname} {userdata.lastname}
+              </div>
+
+              <div>{userdata.address}</div>
+
+              <div>
+                {userdata.city} {userdata.state} {userdata.postalcode}
+              </div>
+
+              <div>{userdata.email}</div>
+
+              <div>{userdata.phonenb}</div>
+
+              <div>Total: ${totalPrice}</div>
+
+              <hr />
+              <div>Items:</div>
+              {value.map(
+                ({
+                  id,
+                  data: {
+                    name,
+                    imgurl,
+                    details,
+                    color,
+                    price,
+                    size,
+                    shoesID,
+                    docID,
+                  },
+                }) => (
+                  <CheckoutItem
+                    key={id}
+                    id={id}
+                    docID={docID}
+                    name={name}
+                    imgurl={imgurl}
+                    details={details}
+                    color={color}
+                    price={price}
+                    size={size}
+                    shoesID={shoesID}
+                  />
+                )
+              )}
+              <div>
+                <button onClick={SubmitOrder}>order</button>
+              </div>
             </div>
-
-            <div>{userdata.address}</div>
-
-            <div>
-              {userdata.city} {userdata.state} {userdata.postalcode}
-            </div>
-
-            <div>{userdata.email}</div>
-
-            <div>{userdata.phonenb}</div>
-
-            <hr />
-
-            {value.map(
-              ({
-                id,
-                data: {
-                  name,
-                  imgurl,
-                  details,
-                  color,
-                  price,
-                  size,
-                  shoesID,
-                  docID,
-                },
-              }) => (
-                <Item
-                  key={id}
-                  id={id}
-                  docID={docID}
-                  name={name}
-                  imgurl={imgurl}
-                  details={details}
-                  color={color}
-                  price={price}
-                  size={size}
-                  shoesID={shoesID}
-                />
-              )
-            )}
-          </div>
-        )}
+          </>
+        ) : null}
       </div>
     </div>
   );

@@ -94,7 +94,11 @@ function Bag() {
           </span>
         </span>
 
-        <Link to="/checkout" state={{ bag: bag }} className="bag_link">
+        <Link
+          to="/checkout"
+          state={{ bag: bag, totalPrice: GetBagTotalPrice(bag) }}
+          className="bag_link"
+        >
           <button className="info_btn">Checkout</button>
         </Link>
       </section>
